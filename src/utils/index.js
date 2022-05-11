@@ -9,10 +9,13 @@ export const capitalize = string => {
 };
 
 export const initPusher = queryClient => {
-  const pusher = new Pusher('1f4bac4e90446fd5b8d1', {
+  const pusher = new Pusher(process.env.NODE_ENV == 'development' ? '1f4bac4e90446fd5b8d1' : '01cd0db29afaa1048e85', {
     cluster: 'ap2',
     userAuthentication: {
-      endpoint: 'http://localhost:5000/pusher/user-auth',
+      endpoint:
+        process.env.NODE_ENV == 'development'
+          ? 'http://localhost:5000/pusher/user-auth'
+          : 'https://www.cullab.in/api/pusher/user-auth',
     },
   });
   pusher.signin();
