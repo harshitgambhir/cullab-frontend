@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root,
+#root > div {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#__next {
+  @apply h-screen;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  @apply text-gray-900;
+}
+
+.min-w-240px {
+  min-width: 240px;
+}
+
+a {
+  @apply text-blue-500;
+}
+
+.otp-input {
+  @apply w-12 h-8;
+}
+
+.otp-input input {
+  @apply appearance-none outline-none focus:ring-1 focus:ring-blue-600 border flex-1 block w-full rounded-md border-gray-300 p-2;
+}
+
+.otp-input.error input {
+  @apply ring-red-600 focus:ring-red-600 ring-1;
+}
+
+.content {
+  @apply w-full max-w-[1600px] mx-auto;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
