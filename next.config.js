@@ -1,6 +1,7 @@
 const withPWA = require('next-pwa');
+const runtimeCaching = require('next-pwa/cache');
 
-module.exports = {
+module.exports = withPWA({
   reactStrictMode: true,
   images: {
     domains: ['cullab.s3.ap-south-1.amazonaws.com', 'cullab-dev.s3.ap-south-1.amazonaws.com', '192.168.0.155'],
@@ -12,7 +13,6 @@ module.exports = {
   },
   pwa: {
     dest: 'public',
-    register: true,
-    skipWaiting: true,
+    runtimeCaching,
   },
-};
+});
