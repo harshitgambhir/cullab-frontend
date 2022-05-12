@@ -58,8 +58,8 @@ export default function Influencers({
                       className={`rounded-lg`}
                       src={inf.featured}
                       alt=''
-                      width={200}
-                      height={255}
+                      width={209}
+                      height={279}
                       layout='responsive'
                       objectFit='cover'
                     />

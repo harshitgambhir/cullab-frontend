@@ -90,13 +90,15 @@ const ImageUpload = ({ setFieldValue, fileName, aspect, ...props }) => {
         accept='image/png, image/jpeg'
         className='opacity-0 absolute inset-0 w-full h-full cursor-pointer'
         onChange={async e => {
-          console.log('sss', e.target.files);
           if (e.target.files && e.target.files.length > 0) {
             const file = e.target.files[0];
             let imageDataUrl = await readFile(file);
 
             // apply rotation if needed
-            const orientation = await getOrientation(file);
+            let orientation = 1;
+            try {
+              orientation = await getOrientation(file);
+            } catch (err) {}
             const rotation = ORIENTATION_TO_ANGLE[orientation];
             if (rotation) {
               imageDataUrl = await getRotatedImage(imageDataUrl, rotation);
