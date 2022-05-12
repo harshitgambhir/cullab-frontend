@@ -154,6 +154,7 @@ const InfluencerEditProfile = ({ influencer }) => {
               disabled={isLoading}
               error={touched.name && errors.name}
               className='mt-6'
+              maxLength={50}
             />
             <Input
               name='username'
@@ -164,6 +165,7 @@ const InfluencerEditProfile = ({ influencer }) => {
               disabled={isLoading}
               className='mt-6'
               error={touched.username && errors.username}
+              maxLength={15}
             />
             <Input
               name='bio'

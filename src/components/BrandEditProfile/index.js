@@ -111,6 +111,7 @@ const BrandEditProfile = ({ brand }) => {
               disabled={isLoading}
               error={touched.name && errors.name}
               className='mt-6'
+              maxLength={50}
             />
             <Input
               name='brandName'
@@ -121,6 +122,7 @@ const BrandEditProfile = ({ brand }) => {
               disabled={isLoading}
               className='mt-6'
               error={touched.brandName && errors.brandName}
+              maxLength={50}
             />
             <Button
               type='submit'

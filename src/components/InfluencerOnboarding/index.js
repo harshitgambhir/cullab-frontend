@@ -107,6 +107,7 @@ const InfluencerOnboarding = ({ step, influencer, platforms, followers, categori
                 className='mt-4'
                 error={touched.name && errors.name}
                 autoFocus
+                maxLength={50}
               />
               <Button
                 type='submit'
@@ -160,6 +161,7 @@ const InfluencerOnboarding = ({ step, influencer, platforms, followers, categori
                 className='mt-4'
                 error={touched.username && errors.username}
                 autoFocus
+                maxLength={15}
               />
               <Button
                 type='submit'

@@ -90,6 +90,7 @@ const BrandOnboarding = ({ step, brand }) => {
                 className='mt-4'
                 error={touched.name && errors.name}
                 autoFocus
+                maxLength={50}
               />
               <Button
                 type='submit'
@@ -138,6 +139,7 @@ const BrandOnboarding = ({ step, brand }) => {
                 className='mt-4'
                 error={touched.brandName && errors.brandName}
                 autoFocus
+                maxLength={50}
               />
               <Button
                 type='submit'
