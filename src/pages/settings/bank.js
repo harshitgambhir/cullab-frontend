@@ -4,6 +4,7 @@ import { withInfluencer } from '../../lib';
 import Header from '../../components/Header';
 import SettingsTopbar from '../../components/SettingsTopbar';
 import Input from '../../components/Input';
+import Head from 'next/head';
 
 export default function EditBank({ errorCode, influencer }) {
   if (errorCode) {
@@ -12,6 +13,15 @@ export default function EditBank({ errorCode, influencer }) {
 
   return (
     <>
+      <Head>
+        <title>Cullab | Settings | Bank</title>
+        <meta name='twitter:card' content='summary' />
+        <meta name='twitter:site' content='@usecullab' />
+        <meta property='og:type' content='website' />
+        <meta property='og:title' content={`Cullab | Settings | Bank`} />
+        <meta property='og:site_name' content='Cullab' />
+        <meta property='og:image' content='images/logo.png' />
+      </Head>
       <Header user={influencer} />
       <div className='content'>
         <div className='max-w-5xl w-[90%] mx-auto'>

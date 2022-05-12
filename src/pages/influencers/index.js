@@ -9,6 +9,7 @@ import { withProfile } from '../../lib';
 import * as api from '../../api';
 import { capitalize } from '../../utils';
 import { ArrowLeftCircle, ArrowRightCircle } from 'react-bootstrap-icons';
+import Head from 'next/head';
 
 export default function Influencers({
   errorCode,
@@ -29,6 +30,15 @@ export default function Influencers({
 
   return (
     <>
+      <Head>
+        <title>Cullab | Influencers</title>
+        <meta name='twitter:card' content='summary' />
+        <meta name='twitter:site' content='@usecullab' />
+        <meta property='og:type' content='website' />
+        <meta property='og:title' content={`Cullab | Influencers`} />
+        <meta property='og:site_name' content='Cullab' />
+        <meta property='og:image' content='images/logo.png' />
+      </Head>
       <Header user={influencer || brand} />
       <div className='content'>
         <div className='w-[90%] mx-auto'>

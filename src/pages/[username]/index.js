@@ -5,22 +5,17 @@ import { Instagram, PersonFill } from 'react-bootstrap-icons';
 import { useMutation } from 'react-query';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
+import Head from 'next/head';
 
 import { withProfile } from '../../lib';
 import Header from '../../components/Header';
 import Button from '../../components/Button';
 import * as influencerApi from '../../api/influencers';
-import * as api from '../../api';
 import * as brandApi from '../../api/brands';
 import Footer from '../../components/Footer';
 
 export default function PublicInfluencer({ errorCode, influencer, brand, publicInfluencer }) {
   const [selectedPackage, setSelectedPackage] = useState(publicInfluencer?.packages[0]);
-  const {
-    mutate: mutateLogout,
-    isSuccess: isSuccessLogout,
-    isLoading: isLoadingLogout,
-  } = useMutation('logout', api.logout);
   const {
     mutate: mutatePlaceOrder,
     isLoading: isLoadingPlaceOrder,
@@ -28,12 +23,6 @@ export default function PublicInfluencer({ errorCode, influencer, brand, publicI
     data: dataPlaceOrder,
   } = useMutation('placeOrder', brandApi.placeOrder);
   const router = useRouter();
-
-  useEffect(() => {
-    if (isSuccessLogout) {
-      router.push(`/brand-login?redirect=/${publicInfluencer.username}`);
-    }
-  }, [isSuccessLogout]);
 
   useEffect(() => {
     if (isSuccessPlaceOrder) {
@@ -47,6 +36,16 @@ export default function PublicInfluencer({ errorCode, influencer, brand, publicI
   }
   return (
     <>
+      <Head>
+        <title>Cullab | Promote with {publicInfluencer.name}</title>
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta name='twitter:site' content='@usecullab' />
+        <meta property='og:type' content='website' />
+        <meta property='og:title' content={`Cullab | Promote with ${publicInfluencer.name}`} />
+        <meta property='og:description' content={publicInfluencer.bio} />
+        <meta property='og:site_name' content='Cullab' />
+        <meta property='og:image' content={publicInfluencer.featured} />
+      </Head>
       <Header user={influencer || brand} />
       <Script src='https://checkout.razorpay.com/v1/checkout.js'></Script>
       <div className='content'>

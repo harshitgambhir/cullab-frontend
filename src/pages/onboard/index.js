@@ -5,6 +5,7 @@ import Header from '../../components/Header';
 import InfluencerOnboarding from '../../components/InfluencerOnboarding';
 import BrandOnboarding from '../../components/BrandOnboarding';
 import * as api from '../../api';
+import Head from 'next/head';
 
 export default function Onboard({ errorCode, step, influencer, brand, platforms, followers, categories }) {
   if (errorCode) {
@@ -13,6 +14,15 @@ export default function Onboard({ errorCode, step, influencer, brand, platforms,
 
   return (
     <>
+      <Head>
+        <title>Cullab | Onboard</title>
+        <meta name='twitter:card' content='summary' />
+        <meta name='twitter:site' content='@usecullab' />
+        <meta property='og:type' content='website' />
+        <meta property='og:title' content={`Cullab | Onboard`} />
+        <meta property='og:site_name' content='Cullab' />
+        <meta property='og:image' content='images/logo.png' />
+      </Head>
       <Header user={influencer || brand} />
       <div className='content'>
         {influencer && (

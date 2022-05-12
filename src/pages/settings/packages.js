@@ -15,6 +15,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import * as api from '../../api/index';
 import { capitalize } from '../../utils';
+import Head from 'next/head';
 
 export default function EditSocials({ errorCode, influencer }) {
   if (errorCode) {
@@ -53,6 +54,15 @@ export default function EditSocials({ errorCode, influencer }) {
 
   return (
     <>
+      <Head>
+        <title>Cullab | Settings | Packages</title>
+        <meta name='twitter:card' content='summary' />
+        <meta name='twitter:site' content='@usecullab' />
+        <meta property='og:type' content='website' />
+        <meta property='og:title' content={`Cullab | Settings | Packages`} />
+        <meta property='og:site_name' content='Cullab' />
+        <meta property='og:image' content='images/logo.png' />
+      </Head>
       <Header user={influencer} />
       <div className='content'>
         <div className='max-w-5xl w-[90%] mx-auto'>

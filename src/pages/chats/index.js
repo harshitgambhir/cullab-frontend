@@ -7,6 +7,7 @@ import BrandChats from '../../components/BrandChats';
 import * as influencerApi from '../../api/influencers';
 import * as brandApi from '../../api/brands';
 import { useQuery } from 'react-query';
+import Head from 'next/head';
 
 export default function ChatsPage({ errorCode, influencer, brand, chats }) {
   if (errorCode) {
@@ -19,6 +20,15 @@ export default function ChatsPage({ errorCode, influencer, brand, chats }) {
 
   return (
     <>
+      <Head>
+        <title>Cullab | Chats</title>
+        <meta name='twitter:card' content='summary' />
+        <meta name='twitter:site' content='@usecullab' />
+        <meta property='og:type' content='website' />
+        <meta property='og:title' content={`Cullab | Chats`} />
+        <meta property='og:site_name' content='Cullab' />
+        <meta property='og:image' content='images/logo.png' />
+      </Head>
       <Header user={influencer || brand} />
       <div className='content md:overflow-hidden'>
         {influencer && <InfluencerChats chats={dataChats.chats} empty={true} influencer={influencer} />}

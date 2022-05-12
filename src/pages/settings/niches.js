@@ -11,6 +11,7 @@ import * as influencerApi from '../../api/influencers';
 import SettingsTopbar from '../../components/SettingsTopbar';
 import Button from '../../components/Button';
 import * as api from '../../api/index';
+import Head from 'next/head';
 
 export default function EditSocials({ errorCode, influencer, categories }) {
   if (errorCode) {
@@ -49,6 +50,15 @@ export default function EditSocials({ errorCode, influencer, categories }) {
 
   return (
     <>
+      <Head>
+        <title>Cullab | Settings | Niches</title>
+        <meta name='twitter:card' content='summary' />
+        <meta name='twitter:site' content='@usecullab' />
+        <meta property='og:type' content='website' />
+        <meta property='og:title' content={`Cullab | Settings | Niches`} />
+        <meta property='og:site_name' content='Cullab' />
+        <meta property='og:image' content='images/logo.png' />
+      </Head>
       <Header user={influencer} />
       <div className='content'>
         <div className='max-w-5xl w-[90%] mx-auto'>

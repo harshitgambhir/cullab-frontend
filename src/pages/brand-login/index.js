@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useMutation, useQueryClient } from 'react-query';
 import OtpInput from 'react-otp-input';
+import Head from 'next/head';
 
 import { withAuth, withProfile } from '../../lib';
 import { useRouter } from 'next/router';
@@ -86,6 +87,15 @@ export default function Login({ influencer }) {
 
   return (
     <>
+      <Head>
+        <title>Cullab | Brand Login</title>
+        <meta name='twitter:card' content='summary' />
+        <meta name='twitter:site' content='@usecullab' />
+        <meta property='og:type' content='website' />
+        <meta property='og:title' content={`Cullab | Brand Login`} />
+        <meta property='og:site_name' content='Cullab' />
+        <meta property='og:image' content='images/logo.png' />
+      </Head>
       <Header user={influencer} />
       <div className='content'>
         <div className='w-full max-w-sm min-h-full flex flex-col items-center mx-auto p-6 sm:px-0 sm:py-16 mt-8'>
