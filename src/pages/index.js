@@ -15,6 +15,7 @@ export default function Home({ errorCode, influencer, brand, platforms, follower
     <>
       <Head>
         <title>Cullab | Find and Hire Influencers in Seconds</title>
+        <meta name='description'>Cullab | Find and Hire Influencers in Seconds</meta>
         <meta name='twitter:card' content='summary' />
         <meta name='twitter:site' content='@usecullab' />
         <meta property='og:type' content='website' />
