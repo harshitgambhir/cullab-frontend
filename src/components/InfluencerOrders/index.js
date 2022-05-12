@@ -44,16 +44,16 @@ const OrderCard = ({ order }) => {
       </div>
       <div className='flex flex-col sm:flex-row w-full sm:items-center justify-between mt-6'>
         <div className='flex items-center'>
-          {!order.influencer.avatar ? (
+          {!order.brand.avatar ? (
             <div className='border border-gray-200 bg-gray-100 rounded-full w-10 h-10 p-2'>
               <PersonFill className='text-gray-400 w-full h-full' />
             </div>
           ) : (
             <div className='w-10 h-10 relative'>
-              <Image className={`rounded-full`} src={order.influencer.avatar} alt='' objectFit='cover' layout='fill' />
+              <Image className={`rounded-full`} src={order.brand.avatar} alt='' objectFit='cover' layout='fill' />
             </div>
           )}
-          <div className='ml-4'>{order.influencer.name}</div>
+          <div className='ml-4'>{order.brand.name}</div>
         </div>
         {(status !== 'APPROVED' || status === 'CREATED') && (
           <div className='flex sm:ml-4 mt-6 sm:mt-0 items-end'>

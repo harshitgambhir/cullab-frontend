@@ -1,7 +1,4 @@
-const withPWA = require('next-pwa');
-const runtimeCaching = require('next-pwa/cache');
-
-module.exports = withPWA({
+module.exports = {
   reactStrictMode: true,
   images: {
     domains: ['cullab.s3.ap-south-1.amazonaws.com', 'cullab-dev.s3.ap-south-1.amazonaws.com', '192.168.0.155'],
@@ -11,8 +8,4 @@ module.exports = withPWA({
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
-  pwa: {
-    dest: 'public',
-    runtimeCaching,
-  },
-});
+};
