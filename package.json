@@ -26,6 +26,7 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-otp-input": "^2.4.0",
     "react-query": "^3.33.6",
+    "sharp": "^0.30.4",
     "spinners-react": "^1.0.7",
     "yup": "^0.32.11"
   },
