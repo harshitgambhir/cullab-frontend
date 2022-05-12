@@ -183,6 +183,7 @@ export default function Login({ influencer }) {
                       containerStyle={{
                         justifyContent: 'space-between',
                       }}
+                      isInputNum
                     />
                     {errors.otp && <div className='text-red-600 text-sm mt-2'>{errors.otp}</div>}
                     <Button
