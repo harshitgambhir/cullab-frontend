@@ -1,4 +1,5 @@
 import Error from 'next/error';
+import Head from 'next/head';
 
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
@@ -12,6 +13,16 @@ export default function Home({ errorCode, influencer, brand, platforms, follower
   }
   return (
     <>
+      <Head>
+        <title>Cullab | Find and Hire Influencers in Seconds</title>
+        <meta name='twitter:card' content='summary' />
+        <meta name='twitter:site' content='@usecullab' />
+        <meta property='og:type' content='website' />
+        <meta property='og:title' content={`Cullab | Find and Hire Influencers in Seconds`} />
+        <meta property='og:description' content={`Cullab | Find and Hire Influencers in Seconds`} />
+        <meta property='og:site_name' content='Cullab' />
+        <meta property='og:image' content='images/logo.png' />
+      </Head>
       <Header user={influencer || brand} />
       <div className='content'>
         <div className='w-[90%] max-w-5xl mx-auto  flex flex-col items-center justify-center'>
