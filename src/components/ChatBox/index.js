@@ -86,10 +86,10 @@ const ChatBox = ({ chat, empty, loading, onSend, isLoading, user }) => {
             <div key={message.id} ref={index === chat.messages.length - 1 ? messagesEndRef : null}>
               <div
                 className={`mr-auto text-sm w-full flex items-center ${
-                  message.userId === user.id ? 'justify-end' : 'justify-start'
+                  message.userId === user.id ? 'justify-end pl-10' : 'justify-start pr-10'
                 }`}
               >
-                <div className={`${message.userId === user.id ? 'bg-blue-100' : 'bg-gray-100'} rounded-lg px-4 py-2`}>
+                <div className={`${message.userId === user.id ? 'bg-blue-100' : 'bg-[#f1f1f1]'} rounded-lg px-4 py-2`}>
                   <p
                     style={{
                       wordBreak: 'break-word',
@@ -97,7 +97,9 @@ const ChatBox = ({ chat, empty, loading, onSend, isLoading, user }) => {
                   >
                     {message.message}
                   </p>
-                  <div className='text-gray-500 text-xs'>{moment(message.createdAt).format('MMM DD, HH:mm a')}</div>
+                  <div className={`${message.userId === user.id ? '' : 'text-right'} mt-1 text-xs`}>
+                    {moment(message.createdAt).format('MMM DD, HH:mm a')}
+                  </div>
                 </div>
               </div>
             </div>

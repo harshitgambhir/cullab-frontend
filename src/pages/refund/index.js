@@ -2,7 +2,9 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import Head from 'next/head';
 
-const refund = () => {
+import { withProfile } from '../../lib';
+
+const refund = ({ influencer, brand }) => {
   return (
     <>
       <Head>
@@ -14,7 +16,7 @@ const refund = () => {
         <meta property='og:site_name' content='Cullab' />
         <meta property='og:image' content='images/logo.png' />
       </Head>
-      <Header />
+      <Header user={influencer || brand} />
       <div className='px-6 sm:px-10 pt-24 pb-10'>
         <div className='max-w-5xl mx-auto'>
           <div className='flex flex-col'>
@@ -37,5 +39,16 @@ const refund = () => {
     </>
   );
 };
+
+export const getServerSideProps = withProfile(async function (ctx) {
+  const { req } = ctx;
+
+  return {
+    props: {
+      influencer: req.session.influencer,
+      brand: req.session.brand,
+    },
+  };
+});
 
 export default refund;
