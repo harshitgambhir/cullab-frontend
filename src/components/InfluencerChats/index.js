@@ -45,6 +45,7 @@ const InfluencerChats = ({ chats, chat, empty, chatLoading, influencer }) => {
     <div className='w-[90%] max-w-6xl mx-auto md:border md:grid md:grid-cols-4 h-full md:mt-10 md:h-[calc(100%-90px)] md:min-h-[36rem]'>
       <div className={`${!empty && 'hidden'} md:block md:col-span-1 md:border-r md:border-gray-300 md:overflow-y-auto`}>
         <div className='text-xl font-bold md:px-6 py-4 md:border-b border-gray-300 h-16'>Chats</div>
+        {!chats.length && <div className='text-center mt-20'>No Chats</div>}
         <InfluencerChatsSidebar chats={chats} />
       </div>
       <ChatBox
