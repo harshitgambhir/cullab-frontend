@@ -39,6 +39,7 @@ export default function Login({ influencer }) {
     isSuccess: isSuccessLogin,
     isError: isErrorLogin,
     error: errorLogin,
+    data: dataLogin,
   } = useMutation('login', brandApi.login);
   const formikRefEmail = useRef(null);
   const formikRefOtp = useRef(null);
@@ -57,7 +58,11 @@ export default function Login({ influencer }) {
         return router.push(redirect);
       }
       initPusher(queryClient);
-      router.push('/onboard');
+      if (dataLogin.step === 4) {
+        router.push('/');
+      } else {
+        router.push('/onboard');
+      }
     }
   }, [isSuccessLogin]);
 

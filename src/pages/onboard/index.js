@@ -91,7 +91,7 @@ export const getServerSideProps = withPrivate(async function (ctx) {
       if (influencer.step === 11) {
         return {
           redirect: {
-            destination: `/`,
+            destination: `/congratulations`,
             permanent: false,
           },
         };

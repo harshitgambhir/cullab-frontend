@@ -37,6 +37,7 @@ export default function Login() {
     mutate: mutateLogin,
     isLoading: isLoadingLogin,
     isSuccess: isSuccessLogin,
+    data: dataLogin,
     isError: isErrorLogin,
     error: errorLogin,
   } = useMutation('login', influencerApi.login);
@@ -53,7 +54,11 @@ export default function Login() {
   useEffect(() => {
     if (isSuccessLogin) {
       initPusher(queryClient);
-      router.push('/onboard');
+      if (dataLogin.step === 11) {
+        router.push('/');
+      } else {
+        router.push('/onboard');
+      }
     }
   }, [isSuccessLogin]);
 
