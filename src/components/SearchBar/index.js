@@ -46,7 +46,7 @@ const SearchBar = ({ className, categories, followers, prices }) => {
             className={`grid grid-cols-1 sm:grid-cols-9 w-full ${className} border border-gray-300 rounded-3xl sm:rounded-full items-center`}
           >
             <Listbox value={values.categories} onChange={val => setFieldValue('categories', val)} multiple>
-              <div className='border-b sm:border-b-0 sm:border-r border-gray-300 sm:col-span-2 hover:bg-gray-50 rounded-t-3xl sm:rounded-l-full'>
+              <div className='border-b sm:border-b-0 sm:border-r border-gray-300 sm:col-span-2 sm:hover:bg-gray-50 rounded-t-3xl sm:rounded-l-full'>
                 <Listbox.Button className='w-full h-full py-4 px-6 sm:p-0 sm:pl-8 sm:py-4 text-left'>
                   <div className='text-gray-500 text-sm'>Category</div>
                   <div className='font-medium truncate'>
@@ -68,7 +68,7 @@ const SearchBar = ({ className, categories, followers, prices }) => {
                           <div
                             className={`${
                               selected ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-900'
-                            } px-4 py-3 rounded-lg cursor-pointer truncate hover:bg-gray-900 hover:text-white`}
+                            } px-4 py-3 rounded-lg cursor-pointer truncate`}
                           >
                             {capitalize(category)}
                           </div>
@@ -80,7 +80,7 @@ const SearchBar = ({ className, categories, followers, prices }) => {
               </div>
             </Listbox>
             <Listbox value={values.followers} onChange={val => setFieldValue('followers', val)} multiple>
-              <div className='border-b sm:border-b-0 sm:border-r border-gray-300 sm:col-span-2 hover:bg-gray-50 '>
+              <div className='border-b sm:border-b-0 sm:border-r border-gray-300 sm:col-span-2 sm:hover:bg-gray-50 '>
                 <Listbox.Button className='w-full h-full py-4 px-6 sm:p-0 sm:pl-8 sm:py-4 text-left'>
                   <div className='text-gray-500 text-sm'>Followers</div>
                   <div className='font-medium truncate'>
@@ -102,7 +102,7 @@ const SearchBar = ({ className, categories, followers, prices }) => {
                           <div
                             className={`${
                               selected ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-900'
-                            } px-4 py-3 rounded-lg cursor-pointer truncate hover:bg-gray-900 hover:text-white`}
+                            } px-4 py-3 rounded-lg cursor-pointer truncate`}
                           >
                             {capitalize(follower)}
                           </div>
@@ -122,7 +122,7 @@ const SearchBar = ({ className, categories, followers, prices }) => {
                 setFieldValue('price', val);
               }}
             >
-              <div className='border-b sm:border-b-0 sm:border-r border-gray-300 sm:col-span-2 hover:bg-gray-50'>
+              <div className='border-b sm:border-b-0 sm:border-r border-gray-300 sm:col-span-2 sm:hover:bg-gray-50'>
                 <Listbox.Button className='w-full h-full py-4 px-6 sm:p-0 sm:pl-8 sm:py-4 text-left'>
                   <div className='text-gray-500 text-sm'>Price</div>
                   <div className='font-medium truncate'>
@@ -142,7 +142,7 @@ const SearchBar = ({ className, categories, followers, prices }) => {
                           <div
                             className={`${
                               selected ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-900'
-                            } px-4 py-3 rounded-lg cursor-pointer truncate hover:bg-gray-900 hover:text-white`}
+                            } px-4 py-3 rounded-lg cursor-pointer truncate`}
                           >
                             {capitalize(price)}
                           </div>
@@ -162,7 +162,7 @@ const SearchBar = ({ className, categories, followers, prices }) => {
                 setFieldValue('gender', val);
               }}
             >
-              <div className=' border-gray-300 sm:col-span-2 hover:bg-gray-50 rounded-b-3xl sm:rounded-r-full'>
+              <div className=' border-gray-300 sm:col-span-2 sm:hover:bg-gray-50 rounded-b-3xl sm:rounded-r-full'>
                 <Listbox.Button className='w-full h-full py-4 px-6 sm:p-0 sm:pl-8 sm:py-4 text-left'>
                   <div className='text-gray-500 text-sm'>Gender</div>
                   <div className='font-medium truncate'>
@@ -182,7 +182,7 @@ const SearchBar = ({ className, categories, followers, prices }) => {
                           <div
                             className={`${
                               selected ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-900'
-                            } px-4 py-3 rounded-lg cursor-pointer truncate hover:bg-gray-900 hover:text-white`}
+                            } px-4 py-3 rounded-lg cursor-pointer truncate`}
                           >
                             {capitalize(gender)}
                           </div>

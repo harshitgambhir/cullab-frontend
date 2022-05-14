@@ -125,7 +125,7 @@ const InfluencerEditProfile = ({ influencer }) => {
             </div>
             <div className='flex flex-col sm:flex-row items-center mt-6'>
               {!values.featured ? (
-                <div className='border border-gray-200 bg-gray-100 min-w-[209px] min-h-[279px] p-4 rounded-lg flex items-center justify-center'>
+                <div className='border border-gray-200 bg-gray-100 w-[209px] h-[279px] min-w-[209px] min-h-[279px] p-4 rounded-lg flex items-center justify-center'>
                   <ImageFill className='text-gray-400 w-10 h-10' />
                 </div>
               ) : (

@@ -259,7 +259,7 @@ const InfluencerOnboarding = ({ step, influencer, platforms, followers, categori
               className='mt-8'
             >
               <p className='text-3xl font-semibold mb-8'>Pick your featured photo</p>
-              <div className='relative border-2 border-dashed hover:bg-gray-200 border-gray-400 rounded-lg min-w-[209px] min-h-[279px] mx-auto flex items-center justify-center'>
+              <div className='relative border-2 border-dashed hover:bg-gray-200 border-gray-400 rounded-lg w-[209px] h-[279px] min-w-[209px] min-h-[279px] mx-auto flex items-center justify-center'>
                 {values.featured ? (
                   <Image className={`rounded-lg`} src={values.featured} alt='' objectFit='cover' layout='fill' />
                 ) : (
