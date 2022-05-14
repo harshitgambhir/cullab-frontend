@@ -13,6 +13,7 @@ import Button from '../../components/Button';
 import * as influencerApi from '../../api/influencers';
 import * as brandApi from '../../api/brands';
 import Footer from '../../components/Footer';
+import toast from 'react-hot-toast';
 
 export default function PublicInfluencer({ errorCode, influencer, brand, publicInfluencer }) {
   const [selectedPackage, setSelectedPackage] = useState(publicInfluencer?.packages[0]);
@@ -20,6 +21,8 @@ export default function PublicInfluencer({ errorCode, influencer, brand, publicI
     mutate: mutatePlaceOrder,
     isLoading: isLoadingPlaceOrder,
     isSuccess: isSuccessPlaceOrder,
+    isError: isErrorPlaceOrder,
+    error: errorPlaceOrder,
     data: dataPlaceOrder,
   } = useMutation('placeOrder', brandApi.placeOrder);
   const router = useRouter();
@@ -30,6 +33,12 @@ export default function PublicInfluencer({ errorCode, influencer, brand, publicI
       rzp1.open();
     }
   }, [isSuccessPlaceOrder]);
+
+  useEffect(() => {
+    if (isErrorPlaceOrder && errorPlaceOrder?.error?.key === 'ACCOUNT_SUSPENDED') {
+      toast.error(errorPlaceOrder.error.message);
+    }
+  }, [isErrorPlaceOrder]);
 
   if (errorCode) {
     return <Error statusCode={errorCode} />;

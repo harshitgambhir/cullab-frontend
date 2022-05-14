@@ -6,14 +6,24 @@ import { useMutation } from 'react-query';
 import Button from '../Button';
 import * as influencerApi from '../../api/influencers';
 import RenderStatus from '../RenderStatus';
+import toast from 'react-hot-toast';
 
 const OrderCard = ({ order }) => {
   const [status, setStatus] = useState(order.status);
-  const { mutate, isLoading, isSuccess: isSuccess, data } = useMutation('acceptOrder', influencerApi.acceptOrder);
+  const {
+    mutate,
+    isLoading,
+    isSuccess: isSuccess,
+    data,
+    isError,
+    error,
+  } = useMutation('acceptOrder', influencerApi.acceptOrder);
   const {
     mutate: mutateCompleteOrder,
     isLoading: isLoadingCompleteOrder,
     isSuccess: isSuccessCompleteOrder,
+    isError: isErrorCompleteOrder,
+    error: errorCompleteOrder,
     data: dataCompleteOrder,
   } = useMutation('completeOrder', influencerApi.completeOrder);
 
@@ -24,10 +34,22 @@ const OrderCard = ({ order }) => {
   }, [isSuccess]);
 
   useEffect(() => {
+    if (isError && error?.error?.key === 'ACCOUNT_SUSPENDED') {
+      toast.error(error.error.message);
+    }
+  }, [isError]);
+
+  useEffect(() => {
     if (isSuccessCompleteOrder) {
       setStatus(dataCompleteOrder.order.status);
     }
   }, [isSuccessCompleteOrder]);
+
+  useEffect(() => {
+    if (isErrorCompleteOrder && errorCompleteOrder?.error?.key === 'ACCOUNT_SUSPENDED') {
+      toast.error(errorCompleteOrder.error.message);
+    }
+  }, [isErrorCompleteOrder]);
 
   return (
     <div key={order.id} className={`border-b border-gray-300 py-6 rounded-lg`}>

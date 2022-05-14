@@ -106,59 +106,66 @@ const ChatBox = ({ chat, empty, loading, onSend, isLoading, user }) => {
           );
         })}
       </div>
-      <div className='md:px-6 py-4 h-16 flex items-center absolute bottom-0 inset-x-0'>
-        <input
-          placeholder='Type a message'
-          className={`text-sm appearance-none outline-none focus:ring-1 border flex-1 block w-full rounded-md border-gray-300 p-3`}
-          value={text}
-          onChange={e => {
-            setText(e.target.value);
-          }}
-          disabled={isLoading}
-          onKeyDown={e => {
-            if (e.key === 'Enter') {
-              if (!text.length) {
-                return;
-              }
-              setText('');
-              onSend(text);
-            }
-          }}
-        />
-        {isLoading ? (
-          <div
-            className={`ml-4 h-8 w-8 ${text.length ? 'text-gray-900 cursor-pointer' : 'text-gray-500'}`}
-            onClick={() => {
-              if (!text.length) {
-                return;
-              }
-              setText('');
-              onSend(text);
+      {chat.isSuspended ? (
+        <div className='md:px-6 py-4 h-16 flex items-center justify-center absolute bottom-0 inset-x-0 bg-gray-50'>
+          You can't send messages to {chat.role === 'INFLUENCER' ? chat.name : chat.brandName} because their account is
+          suspended.
+        </div>
+      ) : (
+        <div className='md:px-6 py-4 h-16 flex items-center absolute bottom-0 inset-x-0'>
+          <input
+            placeholder='Type a message'
+            className={`text-sm appearance-none outline-none focus:ring-1 border flex-1 block w-full rounded-md border-gray-300 p-3`}
+            value={text}
+            onChange={e => {
+              setText(e.target.value);
             }}
-          >
-            <SpinnerCircularFixed
-              className='w-full h-full'
-              thickness={100}
-              speed={150}
-              color='rgb(17 24 39)'
-              secondaryColor='#fff'
-            />
-          </div>
-        ) : (
-          <div
-            className={`ml-4 h-8 w-8 ${text.length ? 'text-gray-900 cursor-pointer' : 'text-gray-500'}`}
-            onClick={() => {
-              if (!text.length) {
-                return;
+            disabled={isLoading}
+            onKeyDown={e => {
+              if (e.key === 'Enter') {
+                if (!text.length) {
+                  return;
+                }
+                setText('');
+                onSend(text);
               }
-              setText('');
-              onSend(text);
             }}
-          >
-            <SendFill className='h-6 w-6 rotate-45' />
-          </div>
-        )}
-      </div>
+          />
+          {isLoading ? (
+            <div
+              className={`ml-4 h-8 w-8 ${text.length ? 'text-gray-900 cursor-pointer' : 'text-gray-500'}`}
+              onClick={() => {
+                if (!text.length) {
+                  return;
+                }
+                setText('');
+                onSend(text);
+              }}
+            >
+              <SpinnerCircularFixed
+                className='w-full h-full'
+                thickness={100}
+                speed={150}
+                color='rgb(17 24 39)'
+                secondaryColor='#fff'
+              />
+            </div>
+          ) : (
+            <div
+              className={`ml-4 h-8 w-8 ${text.length ? 'text-gray-900 cursor-pointer' : 'text-gray-500'}`}
+              onClick={() => {
+                if (!text.length) {
+                  return;
+                }
+                setText('');
+                onSend(text);
+              }}
+            >
+              <SendFill className='h-6 w-6 rotate-45' />
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

@@ -7,16 +7,30 @@ import Link from 'next/link';
 import Button from '../Button';
 import * as brandApi from '../../api/brands';
 import RenderStatus from '../RenderStatus';
+import toast from 'react-hot-toast';
 
 const OrderCard = ({ order }) => {
   const [status, setStatus] = useState(order.status);
-  const { mutate, isLoading, isSuccess: isSuccess, data } = useMutation('completeOrder', brandApi.completeOrder);
+  const {
+    mutate,
+    isLoading,
+    isSuccess: isSuccess,
+    data,
+    isError,
+    error,
+  } = useMutation('approveOrder', brandApi.approveOrder);
 
   useEffect(() => {
     if (isSuccess) {
       setStatus(data.order.status);
     }
   }, [isSuccess]);
+
+  useEffect(() => {
+    if (isError && error?.error?.key === 'ACCOUNT_SUSPENDED') {
+      toast.error(error.error.message);
+    }
+  }, [isError]);
 
   return (
     <div key={order.id} className={`border-b border-gray-200 py-6 rounded-lg`}>

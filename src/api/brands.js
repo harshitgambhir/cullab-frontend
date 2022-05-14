@@ -68,9 +68,9 @@ export const getOrders = ctx =>
     })
     .then(res => res.data);
 
-export const completeOrder = ({ id }) =>
+export const approveOrder = ({ id }) =>
   api
-    .put(`/brands/orders/${id}/complete`)
+    .put(`/brands/orders/${id}/approve`)
     .then(res => res.data)
     .catch(error => {
       throw error.response.data;

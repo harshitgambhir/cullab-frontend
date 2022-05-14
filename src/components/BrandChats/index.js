@@ -4,6 +4,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import BrandChatsSidebar from '../BrandChatsSidebar';
 import ChatBox from '../ChatBox';
 import * as brandApi from '../../api/brands';
+import toast from 'react-hot-toast';
 
 const BrandChats = ({ chats, chat, empty, chatLoading, brand }) => {
   const queryClient = useQueryClient();
@@ -35,6 +36,20 @@ const BrandChats = ({ chats, chat, empty, chatLoading, brand }) => {
               }
               return __chat;
             }),
+          };
+        });
+      }
+    },
+    onError: error => {
+      if (error?.error?.key === 'ACCOUNT_SUSPENDED') {
+        toast.error(error?.error?.message);
+        queryClient.setQueryData(['getChat', chat.id], old => {
+          return {
+            ...old,
+            chat: {
+              ...old.chat,
+              isSuspended: 1,
+            },
           };
         });
       }
