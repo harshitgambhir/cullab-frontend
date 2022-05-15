@@ -903,7 +903,7 @@ const InfluencerOnboarding = ({ step, influencer, platforms, followers, categori
               }}
               className='mt-8'
             >
-              <p className='text-3xl font-semibold mb-8'>What Brands have you collaborated with before?</p>
+              <p className='text-3xl font-semibold mb-8'>What Brands have you collaborated with?</p>
               <Input
                 name='prevc'
                 placeholder='Add all the brands that you have collaborated with before'
