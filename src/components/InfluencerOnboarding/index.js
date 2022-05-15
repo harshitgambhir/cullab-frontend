@@ -969,7 +969,8 @@ const InfluencerOnboarding = ({ step, influencer, platforms, followers, categori
               }}
               className='mt-8'
             >
-              <p className='text-3xl font-semibold mb-8'>Add your bank account</p>
+              <p className='text-3xl font-semibold mb-2'>Add your bank account</p>
+              <p className='text-gray-600 mb-8 text-sm'>We will transfer all your payments to this bank account.</p>
               <Input
                 name='bank.accountHolder'
                 placeholder='Account Holder Name'
