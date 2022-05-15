@@ -24,7 +24,7 @@ const Footer = () => {
           </Link>
         </div>
       </div>
-      <Link href='/'>
+      <Link href='https://www.instagram.com/usecullab'>
         <a className='text-gray-700'>
           <Instagram />
         </a>
