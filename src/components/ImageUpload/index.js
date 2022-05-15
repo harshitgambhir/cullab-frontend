@@ -6,6 +6,8 @@ import { Dialog } from '@headlessui/react';
 import { getCroppedImg, getRotatedImage } from './utils';
 import Button from '../Button';
 import { X } from 'react-bootstrap-icons';
+import toast from 'react-hot-toast';
+import { SpinnerCircularFixed } from 'spinners-react';
 
 const ORIENTATION_TO_ANGLE = {
   3: 180,
@@ -27,7 +29,6 @@ const ImageUpload = ({ setFieldValue, fileName, aspect, ...props }) => {
   const showCroppedImage = useCallback(async () => {
     try {
       const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
-      console.log(croppedImage);
       setFieldValue(props.name, croppedImage.file);
       setFieldValue(fileName, croppedImage.blob);
       handleClose();
@@ -64,15 +65,25 @@ const ImageUpload = ({ setFieldValue, fileName, aspect, ...props }) => {
               <X className='h-8 w-8 cursor-pointer' onClick={handleClose} />
             </div>
             <div className='relative w-full h-[400px] mt-6'>
-              <Cropper
-                image={imageSrc}
-                crop={crop}
-                zoom={zoom}
-                aspect={aspect}
-                onCropChange={setCrop}
-                onCropComplete={onCropComplete}
-                onZoomChange={setZoom}
-              />
+              {imageSrc ? (
+                <Cropper
+                  image={imageSrc}
+                  crop={crop}
+                  zoom={zoom}
+                  aspect={aspect}
+                  onCropChange={setCrop}
+                  onCropComplete={onCropComplete}
+                  onZoomChange={setZoom}
+                />
+              ) : (
+                <SpinnerCircularFixed
+                  className='w-full h-full mx-auto'
+                  thickness={100}
+                  speed={150}
+                  color='rgb(17 24 39)'
+                  secondaryColor='#fff'
+                />
+              )}
             </div>
 
             <Button
@@ -81,6 +92,7 @@ const ImageUpload = ({ setFieldValue, fileName, aspect, ...props }) => {
               onClick={() => {
                 showCroppedImage();
               }}
+              disabled={!imageSrc}
             />
           </Dialog.Panel>
         </div>
@@ -92,7 +104,15 @@ const ImageUpload = ({ setFieldValue, fileName, aspect, ...props }) => {
         onChange={async e => {
           if (e.target.files && e.target.files.length > 0) {
             const file = e.target.files[0];
-            let imageDataUrl = await readFile(file);
+            let imageDataUrl;
+            setIsOpen(true);
+            try {
+              imageDataUrl = await readFile(file);
+            } catch (err) {
+              setIsOpen(false);
+              toast.error('Invalid Image');
+              return;
+            }
 
             // apply rotation if needed
             let orientation = 1;
@@ -101,11 +121,16 @@ const ImageUpload = ({ setFieldValue, fileName, aspect, ...props }) => {
             } catch (err) {}
             const rotation = ORIENTATION_TO_ANGLE[orientation];
             if (rotation) {
-              imageDataUrl = await getRotatedImage(imageDataUrl, rotation);
+              try {
+                imageDataUrl = await getRotatedImage(imageDataUrl, rotation);
+              } catch (err) {
+                setIsOpen(false);
+                toast.error('Invalid Image');
+                return;
+              }
             }
 
             setImageSrc(imageDataUrl);
-            setIsOpen(true);
           }
           e.target.value = '';
         }}
