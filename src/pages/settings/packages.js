@@ -119,17 +119,19 @@ export default function EditSocials({ errorCode, influencer }) {
                         <div key={i} className='shadow-lg rounded-lg p-4'>
                           <div className='flex items-center justify-between'>
                             <div className='font-semibold'>Package {i + 1}</div>
-                            <X
-                              height={32}
-                              width={32}
-                              onClick={() => {
-                                setFieldValue(
-                                  'packages',
-                                  values.packages.filter((__package, index) => index !== i)
-                                );
-                              }}
-                              className='cursor-pointer'
-                            />
+                            {values.packages.length > 1 && (
+                              <X
+                                height={32}
+                                width={32}
+                                onClick={() => {
+                                  setFieldValue(
+                                    'packages',
+                                    values.packages.filter((__package, index) => index !== i)
+                                  );
+                                }}
+                                className='cursor-pointer'
+                              />
+                            )}
                           </div>
                           <Listbox
                             value={_package.platformId}

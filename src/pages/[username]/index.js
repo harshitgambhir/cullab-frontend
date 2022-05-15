@@ -76,7 +76,8 @@ export default function PublicInfluencer({ errorCode, influencer, brand, publicI
               </div>
             )}
             <div className='mt-5 font-semibold text-lg'>{publicInfluencer.name}</div>
-            <div className='flex items-center justify-center mt-2'>
+            <div className='mt-1 text-gray-600 max-w-xl text-center'>{publicInfluencer.bio}</div>
+            <div className='flex items-center justify-center mt-5'>
               {publicInfluencer.platforms.map(platform => {
                 return (
                   <a
@@ -91,9 +92,9 @@ export default function PublicInfluencer({ errorCode, influencer, brand, publicI
                 );
               })}
             </div>
-            <div className='mt-2 text-gray-600 max-w-xl text-center'>{publicInfluencer.bio}</div>
           </div>
-          <div className='grid grid-cols-1 md:grid-cols-5 gap-20 mt-16'>
+          <div className='mt-16 font-semibold text-lg'>Packages</div>
+          <div className='grid grid-cols-1 md:grid-cols-5 gap-20 mt-6'>
             <div className='space-y-8 md:col-span-3'>
               {publicInfluencer.packages.map(_package => {
                 return (
@@ -158,6 +159,13 @@ export default function PublicInfluencer({ errorCode, influencer, brand, publicI
                 />
               )}
             </div>
+          </div>
+          <div className='grid grid-cols-1 md:grid-cols-5 mt-10 mb-40'>
+            <div className='space-y-2 md:col-span-3'>
+              <div className='mt-8 font-semibold text-lg'>Brands Collaborations</div>
+              <div className='text-sm'>{publicInfluencer.prevc}</div>
+            </div>
+            <div className='md:col-span-2' style={{ height: 'min-content' }}></div>
           </div>
         </div>
       </div>

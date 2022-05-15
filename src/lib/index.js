@@ -10,7 +10,7 @@ export const withPrivate = (callback, onboard = true) => {
       const data = await getProfile(ctx);
       if (data?.influencer) {
         ctx.req.session.influencer = data.influencer;
-        if (data?.influencer.step < 11 && onboard) {
+        if (data?.influencer.step < 12 && onboard) {
           return {
             redirect: {
               destination: '/onboard',
@@ -88,7 +88,7 @@ export const withInfluencer = (callback, onboard = true) => {
       const data = await getProfile(ctx);
       if (data?.influencer) {
         ctx.req.session.influencer = data.influencer;
-        if (data?.influencer.step < 11 && onboard) {
+        if (data?.influencer.step < 12 && onboard) {
           return {
             redirect: {
               destination: '/onboard',

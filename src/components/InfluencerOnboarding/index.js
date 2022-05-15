@@ -28,7 +28,7 @@ const InfluencerOnboarding = ({ step, influencer, platforms, followers, categori
 
   useEffect(() => {
     if (isSuccess) {
-      if (parseInt(step) < 10) {
+      if (parseInt(step) < 11) {
         router.push(`/onboard?s=${parseInt(step) + 1}`);
       } else {
         router.reload();
@@ -56,12 +56,20 @@ const InfluencerOnboarding = ({ step, influencer, platforms, followers, categori
         return;
       }
       formData.append('featured', values['fileFeatured']);
-    } else if (parseInt(step) >= 7) {
+    } else if (parseInt(step) >= 7 && parseInt(step) < 10) {
+      for (const val in values) {
+        formData.append(val, JSON.stringify(values[val]));
+      }
+    } else if (parseInt(step) === 11) {
+      console.log(step);
       for (const val in values) {
         formData.append(val, JSON.stringify(values[val]));
       }
     } else {
       for (const val in values) {
+        if (val === 'prevc' && !values[val]) {
+          continue;
+        }
         formData.append(val, values[val]);
       }
     }
@@ -871,6 +879,57 @@ const InfluencerOnboarding = ({ step, influencer, platforms, followers, categori
         </Formik>
       );
     } else if (parseInt(step) === 10) {
+      return (
+        <Formik
+          key={parseInt(step)}
+          initialValues={{
+            prevc: influencer.prevc || '',
+          }}
+          validationSchema={Yup.object({
+            prevc: Yup.string().max(150, 'This must not be greater than 150 characters'),
+          })}
+          onSubmit={handleSubmit}
+          validateOnMount
+          innerRef={formikRef}
+          initialErrors={{ prevc: true }}
+        >
+          {({ values, handleChange, handleBlur, handleSubmit, errors, touched }) => (
+            <form
+              onSubmit={handleSubmit}
+              onKeyDown={e => {
+                if (e.key === 'Enter') {
+                  handleSubmit(e);
+                }
+              }}
+              className='mt-8'
+            >
+              <p className='text-3xl font-semibold mb-8'>What Brands have you collaborated with before?</p>
+              <Input
+                name='prevc'
+                placeholder='Add all the brands that you have collaborated with before'
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.prevc}
+                disabled={isLoading}
+                className='mt-4'
+                error={touched.prevc && errors.prevc}
+                autoFocus
+                maxLength={150}
+                textarea
+                rows={4}
+              />
+              <Button
+                type='submit'
+                text='Next'
+                loading={isLoading}
+                disabled={Object.keys(errors).length}
+                className='w-full mt-6 ml-auto px-6 py-3'
+              />
+            </form>
+          )}
+        </Formik>
+      );
+    } else if (parseInt(step) === 11) {
       return (
         <Formik
           key={parseInt(step)}

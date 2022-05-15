@@ -28,7 +28,7 @@ const Header = ({ user }) => {
         </Link>
         {user ? (
           <div className='flex items-center text-base'>
-            {(user.brandName && user.step === 4) || (user.username && user.step === 11) ? (
+            {(user.brandName && user.step === 4) || (user.username && user.step === 12) ? (
               <>
                 <Link href='/orders'>
                   <a className='mr-4 sm:mr-8 font-semibold text-gray-900'>Orders</a>
@@ -62,10 +62,24 @@ const Header = ({ user }) => {
                 leaveTo='transform opacity-0 scale-95'
               >
                 <Menu.Items className='origin-top-right z-10 absolute right-0 mt-2 w-60 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 outline-none'>
+                  {user.username && user.step === 12 && (
+                    <Menu.Item>
+                      <a
+                        href={
+                          (user.brandName && user.step === 4) || (user.username && user.step === 12)
+                            ? `/${user.username}`
+                            : `/onboard`
+                        }
+                        className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-gray-200 font-semibold'
+                      >
+                        Profile
+                      </a>
+                    </Menu.Item>
+                  )}
                   <Menu.Item>
                     <a
                       href={
-                        (user.brandName && user.step === 4) || (user.username && user.step === 11)
+                        (user.brandName && user.step === 4) || (user.username && user.step === 12)
                           ? `/settings/profile`
                           : `/onboard`
                       }

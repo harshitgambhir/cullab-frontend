@@ -54,6 +54,9 @@ const InfluencerEditProfile = ({ influencer }) => {
         formData.append('featured', values['fileFeatured']);
         continue;
       }
+      if (val === 'prevc' && !values[val]) {
+        continue;
+      }
       formData.append(val, values[val]);
     }
     mutate(formData);
@@ -68,6 +71,7 @@ const InfluencerEditProfile = ({ influencer }) => {
           username: influencer.username || '',
           bio: influencer.bio || '',
           gender: influencer.gender || '',
+          prevc: influencer.prevc || '',
         }}
         validationSchema={Yup.object({
           avatar: Yup.string().required('Avatar is required'),
@@ -86,6 +90,7 @@ const InfluencerEditProfile = ({ influencer }) => {
             .max(150, 'Bio must not be greater than 150 characters')
             .required('Bio is required'),
           gender: Yup.string().oneOf(['male', 'female']).required('Gender is required'),
+          prevc: Yup.string().max(150, 'This must not be greater than 150 characters').nullable(),
         })}
         onSubmit={handleSubmit}
         validateOnMount
@@ -214,6 +219,20 @@ const InfluencerEditProfile = ({ influencer }) => {
               <div className='bg-white border border-gray-300 peer-checked:hidden rounded-full h-6 w-6' />
               <div className='ml-4'>Male</div>
             </label>
+            <Input
+              name='prevc'
+              label='Brand Collaborations'
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.prevc}
+              disabled={isLoading}
+              className='mt-6'
+              error={touched.prevc && errors.prevc}
+              autoFocus
+              maxLength={150}
+              textarea
+              rows={4}
+            />
             <Button
               type='submit'
               text='Save'

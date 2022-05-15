@@ -88,7 +88,7 @@ export const getServerSideProps = withPrivate(async function (ctx) {
           categories = data3?.categories;
         } catch (err) {}
       }
-      if (influencer.step === 11) {
+      if (influencer.step === 12) {
         return {
           redirect: {
             destination: `/congratulations`,

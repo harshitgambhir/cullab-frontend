@@ -54,7 +54,7 @@ export default function Login() {
   useEffect(() => {
     if (isSuccessLogin) {
       initPusher(queryClient);
-      if (dataLogin.step === 11) {
+      if (dataLogin.step === 12) {
         router.push('/');
       } else {
         router.push('/onboard');
